@@ -1,6 +1,6 @@
 import socketio
 
-RENDER_SERVER_URL = 'https://merezha-2.onrender.com'
+RENDER_SERVER_URL = 'https://merezha-2-5.onrender.com'
 USERNAME = input("Придумай собі прізвисько =)\n ")
 
 sio = socketio.Client()
@@ -49,10 +49,18 @@ try:
         elif msg.lower() == '/private':
             sio.emit("users", 'start')
             continue
-
+        elif msg.lower() == '/spam':
+            sio.emit("spam")
+            continue
         # Handle private message after receiving client list
         if private_message_clients:
             print("=== Direct Message Mode ===")
+            print("This function requires a licensed version of merezha 2-5.")
+            license_key = input('Введіть ліцензійний ключ для приватних повідомлень:\n')
+            if license_key not in ['1111', '555', '228']:
+                print("Невірний ліцензійний ключ. Доступ заборонено.")
+                private_message_clients = None  # reset the flag
+                continue
             receiver = input('Введіть прізвисько отримувача:\n')
             forwarded_msg = input('Лист отримувачу пишіть тут:\n')
             user_sid = None

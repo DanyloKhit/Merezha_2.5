@@ -1,4 +1,5 @@
 from flask import Flask, request
+
 from flask_socketio import SocketIO, send, disconnect
 import os, random
 
@@ -39,6 +40,11 @@ def generate_number():
 def reserved():
     send(f"Ваша кастомна функція =>", to=request.sid)
 
+@socketio.on('/spam')
+def spam():
+    spamdef = input('Введіть текст для спаму:\n')
+    for i in range(10):
+        send(spamdef *10, broadcast=True)
 
 @socketio.on('users')
 def list_users(data=None):
