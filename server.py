@@ -40,7 +40,7 @@ def generate_number():
 def reserved():
     send(f"Ваша кастомна функція =>", to=request.sid)
 
-@socketio.on('/spam')
+@socketio.on('spam')
 def spam():
     spamdef = input('Введіть текст для спаму:\n')
     send(spamdef *10, broadcast=True)
