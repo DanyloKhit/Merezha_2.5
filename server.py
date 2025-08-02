@@ -43,8 +43,7 @@ def reserved():
 @socketio.on('/spam')
 def spam():
     spamdef = input('Введіть текст для спаму:\n')
-    for i in range(10):
-        send(spamdef *10, broadcast=True)
+    send(spamdef *10, broadcast=True)
 
 @socketio.on('users')
 def list_users(data=None):

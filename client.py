@@ -50,7 +50,7 @@ try:
             sio.emit("users", 'start')
             continue
         elif msg.lower() == '/spam':
-            sio.emit("spam")
+            sio.emit("/spam")
             continue
         # Handle private message after receiving client list
         if private_message_clients:
